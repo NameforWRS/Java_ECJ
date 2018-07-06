@@ -7,6 +7,7 @@
 
 package ec.app.batch;
 import ec.util.*;
+import jasima.core.statistics.SummaryStat;
 import ec.*;
 import ec.gp.*;
 import ec.gp.koza.*;
@@ -40,20 +41,18 @@ public class BatchProblem extends GPProblem implements SimpleProblemForm
         {
         if (!ind.evaluated)  // don't bother reevaluating
             {
+        	//run evaluation        	
         	((GPIndividual)ind).trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
-            
-            double obj=0.0;
             JavaCallCPlus shp1 = new JavaCallCPlus();  
             String heu=((GPIndividual)ind).trees[0].child.makeCTree(true, true, true);
-            System.out.println("outputed result1:");  
-            System.out.println(heu);  
-            double obj1=shp1.getobj(heu,this.InitialSeed);
-        	obj=obj1+100;
-            System.out.println("outputed result2:");  
-        	System.out.println(obj); 
+			double obj=shp1.getobj(heu, this.InitialSeed);
             // the fitness better be KozaFitness!
+			SummaryStat test1=new SummaryStat();			
             KozaFitness f = ((KozaFitness)ind.fitness);
-            f.setStandardizedFitness(state, obj);
+            f.setStandardizedFitness(state, test1.value(obj).mean());
+			f.setVariance(state, test1.value(obj).stdDev());
+			f.NumOfEvaluations = test1.value(obj).numObs();
+			f.summaryStat = test1.value(obj);
             ind.evaluated = true;
             }
         }

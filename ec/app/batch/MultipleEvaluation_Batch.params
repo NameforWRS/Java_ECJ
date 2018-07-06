@@ -14,30 +14,30 @@ seed.0 = 8888
 breed = ec.app.batch.MyBreeder
 
 #The number of population size
-pop.subpop.0.size = 50
+pop.subpop.0.size = 500
 
 #The max generations
-generations = 5
+generations = 50
 
 
 # Subsidiary pipelines:
-breed.elite.0 = 10
+breed.elite.0 = 5
 # We want to reevaluate elites
 breed.reevaluate-elites.0 = true
 
 #loadFromFile = true
 #pop.file = /tmp/job.0.allRules.log
-pop.subpop.0.species.pipe.num-sources = 1
-pop.subpop.0.species.pipe.source.0 = ec.app.batch.NewDuplicateRemovalCrossoverPipeline
-pop.subpop.0.species.pipe.source.0.prob = 0.5
-pop.subpop.0.species.pipe.source.1 = ec.app.batch.NewDuplicateRemovalMutationPipeline
-pop.subpop.0.species.pipe.source.1.prob = 0.5
-
 #pop.subpop.0.species.pipe.num-sources = 2
-#pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
-#pop.subpop.0.species.pipe.source.0.prob = 0.95
-#pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
-#pop.subpop.0.species.pipe.source.1.prob = 0.05
+#pop.subpop.0.species.pipe.source.0 = ec.app.batch.NewDuplicateRemovalCrossoverPipeline
+#pop.subpop.0.species.pipe.source.0.prob = 0.9
+#pop.subpop.0.species.pipe.source.1 = ec.app.batch.NewDuplicateRemovalMutationPipeline
+#pop.subpop.0.species.pipe.source.1.prob = 0.1
+
+pop.subpop.0.species.pipe.num-sources = 2
+pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
+pop.subpop.0.species.pipe.source.0.prob = 0.95
+pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
+pop.subpop.0.species.pipe.source.1.prob = 0.05
 
 #gp.koza.xover.source.0 = ec.app.batch.Selection.IndifferenceZoneSelection
 #gp.koza.xover.source.1 = same
@@ -149,6 +149,11 @@ eval.problem.Simulation.Replications = 1
 eval.problem.Simulation.Seed = 199608095920
 #1: Mean flowtime 2: CMax 3: TT(Total Tardiness) 4 TWT(Total Weighted Tardiness)
 #11: Mean flowtime Deviation
+#eval=ec.simple.SimpleEvaluator
+eval = ec.app.batch.TSIDOCBAEvaluator
+#eval = ec.app.batch.OCBAEvaluator
+#eval = ec.app.batch.KnowledgeGradientEvaluator
+
 eval.problem.Simulation.UniqueSeed = true
 eval.Simulation.IterationBudget = 20
 eval.Simulation.WarmupBudget = 5
@@ -160,12 +165,12 @@ eval.Simulation.IndifferenceDelta = 0.35
 doFinalEvaluation = true 
 evaluation.UseOldSample = true
 evaluation.Seed = 778899
-evaluation.Evaluator = EA,IDOCBA,OCBA,KG
+evaluation.Evaluator = EA,IDOCBA,OCBA,KG,AOAP,RS
 #evaluation.Evaluator = EA
 evaluation.Replications = 10
 evaluation.Threshold = 200
 evaluation.InitialReplications = 5
 evaluation.IterationBudget = 5
-evaluation.IDOCBA.WarmupBudget = 0
+evaluation.IDOCBA.WarmupBudget = 5
 evaluation.IDOCBA.FirstStageBudget = 10
 evaluation.IDOCBA.IndifferenceDelta = 0.01

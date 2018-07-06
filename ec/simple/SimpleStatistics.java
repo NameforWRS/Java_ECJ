@@ -379,10 +379,11 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
 
 				state.AllGPIndividuals.get(i).trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
 				if (Normalization == 0) {
-					evaluator.AddDispatchingRule(new testGPRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				} else {
-					evaluator
-							.AddDispatchingRule(new NormalizedBrankeRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				}
 			} catch (CloneNotSupportedException e) {
 				// TODO Auto-generated catch block
@@ -431,10 +432,11 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
 
 				state.AllGPIndividuals.get(i).trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
 				if (Normalization == 0) {
-					evaluator.AddDispatchingRule(new testGPRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				} else {
-					evaluator
-							.AddDispatchingRule(new NormalizedBrankeRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				}
 			} catch (CloneNotSupportedException e) {
 				// TODO Auto-generated catch block
@@ -484,10 +486,11 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
 
 				state.AllGPIndividuals.get(i).trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
 				if (Normalization == 0) {
-					evaluator.AddDispatchingRule(new testGPRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				} else {
-					evaluator
-							.AddDispatchingRule(new NormalizedBrankeRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				}
 			} catch (CloneNotSupportedException e) {
 				// TODO Auto-generated catch block
@@ -538,10 +541,11 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
 
 				state.AllGPIndividuals.get(i).trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
 				if (Normalization == 0) {
-					evaluator.AddDispatchingRule(new testGPRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				} else {
-					evaluator
-							.AddDispatchingRule(new NormalizedBrankeRule(state.AllGPIndividuals.get(i).trees[0].child));
+					String heu=state.AllGPIndividuals.get(i).trees[0].child.makeCTree(true, true, true);
+					evaluator.AddDispatchingRule(heu);
 				}
 			} catch (CloneNotSupportedException e) {
 				// TODO Auto-generated catch block

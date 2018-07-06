@@ -2,7 +2,7 @@ package ec.app.batch;
 
 public class JavaCallCPlus {
 	static{  
-        System.loadLibrary("libNewClassA"); 
+        System.loadLibrary("libModifiedClassA"); 
     }  
    
 public JavaCallCPlus() {}    

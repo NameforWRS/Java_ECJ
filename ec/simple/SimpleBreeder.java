@@ -109,7 +109,7 @@ public class SimpleBreeder extends Breeder
             }
         else if (eliteFrac[subpopulation] != NOT_SET)
             {
-            return (int) Math.max(Math.floor(state.population.subpops.get(subpopulation).individuals.size() * eliteFrac[subpopulation]), 1.0);  // AT LEAST 1 ELITE
+            return (int) Math.max(Math.floor(state.population.subpops[subpopulation].individuals.length * eliteFrac[subpopulation]), 1.0);  // AT LEAST 1 ELITE
             }
         else 
             {
@@ -238,17 +238,17 @@ public class SimpleBreeder extends Breeder
             }
 
         // maybe resize?
-        for(int i = 0; i < state.population.subpops.size(); i++)
+        for(int i = 0; i < state.population.subpops.length; i++)
             {
             if (reduceBy[i] > 0)
                 {
                 int prospectiveSize = Math.max(
-                    Math.max(state.population.subpops.get(i).individuals.size() - reduceBy[i], minimumSize[i]),
+                    Math.max(state.population.subpops[i].individuals.length - reduceBy[i], minimumSize[i]),
                     numElites(state, i));
-                if (prospectiveSize < state.population.subpops.get(i).individuals.size())  // let's resize!
+                if (prospectiveSize < state.population.subpops[i].individuals.length)  // let's resize!
                     {
-                    state.output.message("Subpop " + i + " reduced " + state.population.subpops.get(i).individuals.size() + " -> " + prospectiveSize);
-                    newpop.subpops.get(i).truncate(prospectiveSize);
+                    state.output.message("Subpop " + i + " reduced " + state.population.subpops[i].individuals.length + " -> " + prospectiveSize);
+                    newpop.subpops[i].truncate(prospectiveSize);
                     }
                 }
             }

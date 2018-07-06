@@ -664,7 +664,7 @@ public class ExtendFinalEvaluationStatistics extends Statistics implements Stead
 
 	protected void fullEvaluation_IDOCBA(EvolutionState state) {
 		long r = System.currentTimeMillis();
-
+		System.out.println("this is IDOCBA run"); 
 		RSSingleBestRun evaluator = new RSSingleBestRun();
 
 		int len = state.AllGPIndividuals.size();
@@ -741,7 +741,7 @@ public class ExtendFinalEvaluationStatistics extends Statistics implements Stead
 	// A new procedure, do full evaluation using R&S methods
 	protected void fullEvaluation_EA(EvolutionState state) {
 		long r = System.currentTimeMillis();
-
+		System.out.println("this is EA run"); 
 		EARun evaluator = new EARun();
 
 		int len = state.AllGPIndividuals.size();
@@ -803,7 +803,7 @@ public class ExtendFinalEvaluationStatistics extends Statistics implements Stead
 	// A new procedure, do full evaluation using R&S methods
 	protected void fullEvaluation_KG(EvolutionState state) {
 		long r = System.currentTimeMillis();
-
+		System.out.println("this is KG run"); 
 		KnowledgeGradientRun evaluator = new KnowledgeGradientRun();
 
 		int len = state.AllGPIndividuals.size();
@@ -866,7 +866,7 @@ public class ExtendFinalEvaluationStatistics extends Statistics implements Stead
 	// A new procedure, do full evaluation using R&S methods
 	protected void fullEvaluation_OCBA(EvolutionState state) {
 		long r = System.currentTimeMillis();
-
+		System.out.println("this is OCBA run"); 
 		OCBARun evaluator = new OCBARun();
 
 		int len = state.AllGPIndividuals.size();
@@ -928,7 +928,7 @@ public class ExtendFinalEvaluationStatistics extends Statistics implements Stead
 	protected void fullEvaluation_Ranking(EvolutionState state) {
 
 		long r = System.currentTimeMillis();
-
+		System.out.println("this is Ranking run"); 
 		PreWarmupTSOCBARun evaluator = new PreWarmupTSOCBARun();
 
 		int len = state.AllGPIndividuals.size();
@@ -998,9 +998,9 @@ public class ExtendFinalEvaluationStatistics extends Statistics implements Stead
 	// Added 2017.10.17
 	// A new procedure, do full evaluation using AOAP methods
 	protected void fullEvaluation_AOAP(EvolutionState state) {
-
+		
 		long r = System.currentTimeMillis();
-
+		System.out.println("this is AOAP run"); 
 		AOAPRun evaluator = new AOAPRun();
 
 		int len = state.AllGPIndividuals.size();

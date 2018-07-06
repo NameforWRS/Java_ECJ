@@ -367,7 +367,7 @@ public class NewDuplicateRemovalCrossoverPipeline extends CrossoverPipeline
 						break;
 					}
 
-					if (numOfRetries > 15)
+					if (numOfRetries > 10)
 					{
 						needNewIndividual = true;					
 						break;

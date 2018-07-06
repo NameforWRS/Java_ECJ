@@ -304,66 +304,13 @@ public class MyBreeder extends Breeder
                 from[y][x] = currentFrom;
                 currentFrom += numinds[y][x];
                 }
-            }
-
-/*
-  for(int y=0;y<state.breedthreads;y++)
-  for(int x=0;x<state.population.subpops.length;x++)
-  {
-  // the number of individuals we need to breed
-  int length = computeSubpopulationLength(state, newpop, x, 0);
-  // the size of each breeding chunk except the last one
-  int firstBreedChunkSizes = length/state.breedthreads;
-  // the size of the last breeding chunk
-  int lastBreedChunkSize = 
-  firstBreedChunkSizes + length - firstBreedChunkSizes * (state.breedthreads);
-                
-  // figure numinds
-  if (y < state.breedthreads-1) // not the last one
-  numinds[y][x] = firstBreedChunkSizes;
-  else // the last one
-  numinds[y][x] = lastBreedChunkSize;
-                
-  // figure from
-  from[y][x] = (firstBreedChunkSizes * y);
-  }
-*/            
+            }            
         if (numThreads==1)
             {
             breedPopChunk(newpop,state,numinds[0],from[0],0);
             }
         else
             {
-            /*
-              Thread[] t = new Thread[numThreads];
-                
-              // start up the threads
-              for(int y=0;y<numThreads;y++)
-              {
-              SimpleBreederThread r = new SimpleBreederThread();
-              r.threadnum = y;
-              r.newpop = newpop;
-              r.numinds = numinds[y];
-              r.from = from[y];
-              r.me = this;
-              r.state = state;
-              t[y] = new Thread(r);
-              t[y].start();
-              }
-                
-              // gather the threads
-              for(int y=0;y<numThreads;y++) 
-              try
-              {
-              t[y].join();
-              }
-              catch(InterruptedException e)
-              {
-              state.output.fatal("Whoa! The main breeding thread got interrupted!  Dying...");
-              }
-            */
-
-
             // start up the threads
             for(int y=0;y<numThreads;y++)
                 {
@@ -379,6 +326,7 @@ public class MyBreeder extends Breeder
                 
             pool.joinAll();
             }
+        
         return newpop;
         }
 
@@ -427,7 +375,9 @@ public class MyBreeder extends Breeder
                 // start breedin'!
                                         
                 x=from[subpop];
-                int upperbound = from[subpop]+numinds[subpop];
+                int upperbound = from[subpop]+numinds[subpop];//设置最小剪枝数
+                //此处开始重复剪枝
+                //20180704
                 while(x<upperbound)
                     x += bp.produce(1,upperbound-x,x,subpop,
                         newpop.subpops[subpop].individuals,

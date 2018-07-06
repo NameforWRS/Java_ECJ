@@ -280,16 +280,13 @@ public class NewDuplicateRemovalMutationPipeline extends MutationPipeline {
 					break;
 				}
 				
-				if (numOfRetries > 30)
+				if (numOfRetries > 10)
 				{
 					i.trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
 					String gpOldRule = i.trees[0].child.makeCTree(true, true, false);
 					
 					j.trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
 					String gpNewRule = j.trees[0].child.makeCTree(true, true, false);
-					System.out.println("Mutation numOfRetries = " + numOfRetries);
-					System.out.println("Old Rule = " + gpOldRule );
-					System.out.println("New Rule = " + gpNewRule );
 					break;
 				}
 
