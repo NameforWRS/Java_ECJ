@@ -26,18 +26,18 @@ breed.elite.0 = 5
 breed.reevaluate-elites.0 = true
 
 #loadFromFile = true
-#pop.file = /tmp/job.0.allRules.log
-#pop.subpop.0.species.pipe.num-sources = 2
-#pop.subpop.0.species.pipe.source.0 = ec.app.batch.NewDuplicateRemovalCrossoverPipeline
-#pop.subpop.0.species.pipe.source.0.prob = 0.9
-#pop.subpop.0.species.pipe.source.1 = ec.app.batch.NewDuplicateRemovalMutationPipeline
-#pop.subpop.0.species.pipe.source.1.prob = 0.1
-
+#pop.file = C:/Users/nkwan/Desktop/LimitedWaiting GP/Result/Log/allRules.log
 pop.subpop.0.species.pipe.num-sources = 2
-pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
-pop.subpop.0.species.pipe.source.0.prob = 0.95
-pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
-pop.subpop.0.species.pipe.source.1.prob = 0.05
+pop.subpop.0.species.pipe.source.0 = ec.app.batch.NewDuplicateRemovalCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.prob = 0.9
+pop.subpop.0.species.pipe.source.1 = ec.app.batch.NewDuplicateRemovalMutationPipeline
+pop.subpop.0.species.pipe.source.1.prob = 0.1
+
+#pop.subpop.0.species.pipe.num-sources = 2
+#pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
+#pop.subpop.0.species.pipe.source.0.prob = 0.95
+#pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
+#pop.subpop.0.species.pipe.source.1.prob = 0.05
 
 #gp.koza.xover.source.0 = ec.app.batch.Selection.IndifferenceZoneSelection
 #gp.koza.xover.source.1 = same
@@ -114,8 +114,8 @@ stat.child.0.do-size = true
 stat.child.0.file = /log/Details_Evaluation.stat
 
 #The evaluator for in-generation fitness
-#eval=ec.simple.SimpleEvaluator
-eval = ec.app.batch.TSIDOCBAEvaluator
+eval=ec.simple.SimpleEvaluator
+#eval = ec.app.batch.TSIDOCBAEvaluator
 #eval = ec.app.JSP.OCBAEvaluator
 #eval = ec.app.JSP.KnowledgeGradientEvaluator
 #eval = ec.app.JSP.KnowledgeGradientEvaluator
@@ -149,10 +149,6 @@ eval.problem.Simulation.Replications = 1
 eval.problem.Simulation.Seed = 199608095920
 #1: Mean flowtime 2: CMax 3: TT(Total Tardiness) 4 TWT(Total Weighted Tardiness)
 #11: Mean flowtime Deviation
-#eval=ec.simple.SimpleEvaluator
-eval = ec.app.batch.TSIDOCBAEvaluator
-#eval = ec.app.batch.OCBAEvaluator
-#eval = ec.app.batch.KnowledgeGradientEvaluator
 
 eval.problem.Simulation.UniqueSeed = true
 eval.Simulation.IterationBudget = 20

@@ -12,5 +12,4 @@ public JavaCallCPlus() {}
 public native double getobj(String heuristic,long seed);  
 
 public native double getsimpleobj(String heuristic);  
-public native double getsimpleobjwithseed(String heuristic,long seed);  
 } 
