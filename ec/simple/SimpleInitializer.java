@@ -9,6 +9,7 @@ package ec.simple;
 import ec.Initializer;
 import ec.EvolutionState;
 import ec.util.Parameter;
+import ec.util.*;
 import ec.Population;
 
 /* 
@@ -47,6 +48,12 @@ public class SimpleInitializer extends Initializer
         p.populate(state, thread);
         return p;
         }
+    public void initialPopulationthread(final EvolutionState state, int thread)
+    {
+    Population p = setupPopulation(state, thread); 
+    p.populate(state, thread);
+    state.pop_record.add(p);
+    }
                 
     public Population setupPopulation(final EvolutionState state, int thread)
         {

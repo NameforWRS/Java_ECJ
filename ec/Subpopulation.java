@@ -240,8 +240,13 @@ public class Subpopulation implements Group
 
     public void populate(EvolutionState state, int thread)
         {
+    	System.out.println(thread);
         int len = individuals.length;           // original length of individual array
         int start = 0;                                          // where to start filling new individuals in -- may get modified if we read some individuals in
+        
+        int interval=individuals.length/state.breedthreads;
+        int startthread=interval*thread;
+        int endthread=interval*(thread+1);
         
         // should we load individuals from a file? -- duplicates are permitted
         if (loadInds)
@@ -312,7 +317,7 @@ public class Subpopulation implements Group
         int numOfRetries = 0;
         int numOfDuplicates = 0;
         doWrapper.Init();
-        for(int x=start;x<individuals.length;x++) 
+        for(int x=startthread;x<endthread;x++) 
             {
             for(int tries=0; 
                 tries <= /* Yes, I see that*/ numDuplicateRetries; 

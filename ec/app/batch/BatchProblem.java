@@ -18,16 +18,15 @@ public class BatchProblem extends GPProblem implements SimpleProblemForm
     {
     private static final long serialVersionUID = 1;
     
-    public static final String P_Seed="Seed";
+    public static final String P_Seed="seed";
     
-    public long InitialSeed=83261;
+    public long InitialSeed=19960809;
     
     public void setup(final EvolutionState state,
         final Parameter base)
         {
         super.setup(state, base);
-        
-        this.InitialSeed=state.parameters.getLongWithDefault(base.push(P_Seed), null, System.currentTimeMillis());
+        //this.InitialSeed=state.parameters.getLongWithDefault(base.push(P_Seed), null, System.currentTimeMillis());
         // verify our input is the right class (or subclasses from it)
         if (!(input instanceof DoubleData))
             state.output.fatal("GPData class must subclass from " + DoubleData.class,
@@ -45,7 +44,9 @@ public class BatchProblem extends GPProblem implements SimpleProblemForm
         	((GPIndividual)ind).trees[0].printTwoArgumentNonterminalsAsOperatorsInC = false;
             JavaCallCPlus shp1 = new JavaCallCPlus();  
             String heu=((GPIndividual)ind).trees[0].child.makeCTree(true, true, true);
-			double obj=shp1.getobj(heu, this.InitialSeed);
+            //String heu="(* SSUMPTB)";
+            //System.out.println(heu);
+			double obj=shp1.getobj(heu, this.InitialSeed+threadnum*100);
             // the fitness better be KozaFitness!
 			SummaryStat test1=new SummaryStat();			
             KozaFitness f = ((KozaFitness)ind.fitness);

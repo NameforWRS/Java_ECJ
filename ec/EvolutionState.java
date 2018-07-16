@@ -239,6 +239,8 @@ public class EvolutionState implements Singleton
 
     /** The current population.  This is <i>not</i> a singleton object, and may be replaced after every generation in a generational approach. You should only access this in a read-only fashion.  */
     public Population population;
+    
+    public ArrayList<Population> pop_record=new ArrayList<Population>();
 
     /** The population initializer, a singleton object.  You should only access this in a read-only fashion. */
     public Initializer initializer;

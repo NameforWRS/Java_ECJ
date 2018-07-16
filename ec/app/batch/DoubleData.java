@@ -26,6 +26,20 @@ public class DoubleData extends GPData
 	public double RSSUMPT;
 	public double RSMAXPT;
 	public double RSMINPT;
+	
+	public double PTB;
+	public double FSUMPTB;
+	public double SSUMPTB;
+	public double FMINPTB;
+	public double SMINPTB;
+	public double SMAXPTB;
+	public double RT;
+	public double PTS;
+	public double RSUMPTS;
+	public double RMINPTS;
+	public double RMAXPTS;
+
+
 
 
 	public void copyTo(final GPData gpd)   // copy my stuff to another DoubleData
@@ -45,6 +59,18 @@ public class DoubleData extends GPData
 		((DoubleData)gpd).RSSUMPT = RSSUMPT;
 		((DoubleData)gpd).RSMAXPT = RSMAXPT;
 		((DoubleData)gpd).RSMINPT = RSMINPT;	
+		((DoubleData)gpd).PTB=PTB;
+		((DoubleData)gpd).FSUMPTB=FSUMPTB;
+		((DoubleData)gpd).SSUMPTB=SSUMPTB;
+		((DoubleData)gpd).FMINPTB=FMINPTB;
+		((DoubleData)gpd).SMINPTB=SMINPTB;
+		((DoubleData)gpd).SMAXPTB=SMAXPTB;
+		((DoubleData)gpd).RT=RT;
+		((DoubleData)gpd).PTS=PTS;
+		((DoubleData)gpd).RSUMPTS=RSUMPTS;
+		((DoubleData)gpd).RMINPTS=RMINPTS;
+		((DoubleData)gpd).RMAXPTS=RMAXPTS;
+
 	}
 }
 

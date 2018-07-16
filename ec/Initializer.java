@@ -49,4 +49,7 @@ public abstract class Initializer implements Singleton
         
     /** Loads a Population from the parameter file, sets it up, and returns it. */
     public abstract Population setupPopulation(final EvolutionState state, int thread); 
+    
+    //20180715
+    public abstract void initialPopulationthread(final EvolutionState state, int thread);
     }

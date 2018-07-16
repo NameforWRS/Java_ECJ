@@ -6,8 +6,14 @@
 
 
 package ec.simple;
+import java.util.ArrayList;
+
 import ec.*;
+import ec.app.batch.DummyOperation;
+import ec.simple.SimpleEvaluator.SimpleEvaluatorThread;
 import ec.util.Checkpoint;
+import ec.util.Parameter;
+import ec.util.ThreadPool;
 
 /* 
  * SimpleEvolutionState.java
@@ -43,16 +49,62 @@ public class SimpleEvolutionState extends EvolutionState
     /**
      * 
      */
+	
+	
+	public ThreadPool pool1 = new ThreadPool();
+	Object[] lock = new Object[0];          // Arrays are serializable
+    int individualCounter = 0;
+    int subPopCounter = 0;
+    int chunkSize;  // a value >= 1, or C_AUTO
+    public static final int C_AUTO = 0;
+
     public void startFresh() 
         {
         output.message("Setting up");
         setup(this,null);  // a garbage Parameter
+        
+        //pop_record.clone();
 
-        // POPULATION INITIALIZATION
+
+        // POPULATION INITIALIZATION        
+        
         output.message("Initializing Generation 0");
-        statistics.preInitializationStatistics(this);
-        population = initializer.initialPopulation(this, 0); // unthreaded
-        statistics.postInitializationStatistics(this);
+        if(this.breedthreads==1)
+        {
+        	statistics.preInitializationStatistics(this);
+            population = initializer.initialPopulation(this, 0); // unthreaded
+            statistics.postInitializationStatistics(this);
+        }
+        else
+        {
+        	statistics.preInitializationStatistics(this);
+        	ThreadPool.Worker[] threads = new ThreadPool.Worker[this.breedthreads];
+        	for(int i = 0; i < threads.length; i++)
+            {	
+        	SimpleBreedThread run = new SimpleBreedThread();
+            run.threadnum = i;
+            run.state = this;
+            threads[i] = pool1.start(run, "ECJ Evaluation Thread " + i);
+            }
+        	 // join
+            pool1.joinAll();
+            Parameter base = new Parameter("pop");
+            Population p=new Population();
+            p.setup(this,base);
+            for(int i=0;i<this.pop_record.size();i++)
+            {
+            	for(int j=0;j<this.pop_record.get(i).subpops[0].individuals.length;j++)
+            	{
+            		if(this.pop_record.get(i).subpops[0].individuals[j]!=null)
+            		{
+            			p.subpops[0].individuals[j]=pop_record.get(i).subpops[0].individuals[j];
+            		}	
+            	}
+            }
+            population=p;
+            statistics.postInitializationStatistics(this);
+        }
+        
         
         // Compute generations from evaluations if necessary
         if (numEvaluations > UNDEFINED)
@@ -172,6 +224,17 @@ public class SimpleEvolutionState extends EvolutionState
         finisher.finishPopulation(this,result);
         exchanger.closeContacts(this,result);
         evaluator.closeContacts(this,result);
+        }
+    
+    /** A helper class for implementing multithreaded breed */
+    class SimpleBreedThread implements Runnable
+        {
+        public int threadnum;
+        public EvolutionState state;
+        public void run() 
+            {    
+        	initializer.initialPopulationthread(state, threadnum);//将新生的个体加入population中
+            }
         }
 
     }
